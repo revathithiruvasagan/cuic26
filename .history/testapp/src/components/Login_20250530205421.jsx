@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { loginUser, validateEmail } from "../utils/auth";
-import "../styles/Login.css";
+impor
 
 const Login = () => {
   const [formData, setFormData] = useState({
