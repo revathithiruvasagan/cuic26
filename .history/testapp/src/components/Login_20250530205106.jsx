@@ -141,6 +141,15 @@ const Login = () => {
               {loading ? "Signing In..." : "Login"}
             </button>
           </div>
+
+          <div className="signup-message">
+            <p>
+              Not registered?{" "}
+              <a href="#signup" className="signup-link">
+                Create an account
+              </a>
+            </p>
+          </div>
         </form>
       </div>
     </div>

@@ -1,10 +1,10 @@
-import { useState } from "react";
-import { loginUser, validateEmail } from "../utils/auth";
+import { useState } from 'react';
+import { loginUser, validateEmail } from '../utils/auth';
 
 const Login = () => {
   const [formData, setFormData] = useState({
-    email: "",
-    password: "",
+    email: '',
+    password: ''
   });
   const [errors, setErrors] = useState({});
   const [message, setMessage] = useState(null);
@@ -12,71 +12,74 @@ const Login = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData((prev) => ({
+    setFormData(prev => ({
       ...prev,
-      [name]: value,
+      [name]: value
     }));
-
+    
+    
     if (errors[name]) {
-      setErrors((prev) => ({
+      setErrors(prev => ({
         ...prev,
-        [name]: "",
+        [name]: ''
       }));
     }
   };
 
   const handleBlur = (e) => {
     const { name, value } = e.target;
-
-    if (name === "email" && value && !validateEmail(value)) {
-      setErrors((prev) => ({
+    
+    if (name === 'email' && value && !validateEmail(value)) {
+      setErrors(prev => ({
         ...prev,
-        email: "Please enter a valid email address",
+        email: 'Please enter a valid email address'
       }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    
+    
     setErrors({});
     setMessage(null);
-
+    
     // Validation
     const newErrors = {};
-
+    
     if (!formData.email) {
-      newErrors.email = "Email is required";
+      newErrors.email = 'Email is required';
     } else if (!validateEmail(formData.email)) {
-      newErrors.email = "Please enter a valid email address";
+      newErrors.email = 'Please enter a valid email address';
     }
-
+    
     if (!formData.password) {
-      newErrors.password = "Password is required";
+      newErrors.password = 'Password is required';
     } else if (formData.password.length < 6) {
-      newErrors.password = "Password must be at least 6 characters";
+      newErrors.password = 'Password must be at least 6 characters';
     }
-
+    
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-
+    
     setLoading(true);
-
+    
     try {
+      
       const result = await loginUser(formData);
-
+      
       if (result.success) {
-        setMessage({ type: "success", text: result.message });
-
-        setFormData({ email: "", password: "" });
+        setMessage({ type: 'success', text: result.message });
+        
+        setFormData({ email: '', password: '' });
       } else {
-        setMessage({ type: "error", text: result.message });
+        setMessage({ type: 'error', text: result.message });
       }
     } catch (error) {
-      console.error("Login error:", error);
-      setMessage({ type: "error", text: "An error occurred during login" });
+      console.error('Login error:', error);
+      setMessage({ type: 'error', text: 'An error occurred during login' });
     } finally {
       setLoading(false);
     }
@@ -91,9 +94,9 @@ const Login = () => {
               <p>{message.text}</p>
             </div>
           )}
-
+          
           <h1 className="login-title">Login To Your Account</h1>
-
+          
           <div className="form-group">
             <input
               type="email"
@@ -101,45 +104,47 @@ const Login = () => {
               value={formData.email}
               onChange={handleChange}
               onBlur={handleBlur}
-              className={`form-control ${errors.email ? "error" : ""}`}
+              className={`form-control ${errors.email ? 'error' : ''}`}
               placeholder="Email"
               required
             />
             {errors.email && (
-              <div
-                className="alert error"
-                style={{ marginTop: "0.5rem", marginBottom: 0 }}
-              >
+              <div className="alert error" style={{ marginTop: '0.5rem', marginBottom: 0 }}>
                 {errors.email}
               </div>
             )}
           </div>
-
+          
           <div className="form-group">
             <input
               type="password"
               name="password"
               value={formData.password}
               onChange={handleChange}
-              className={`form-control ${errors.password ? "error" : ""}`}
+              className={`form-control ${errors.password ? 'error' : ''}`}
               placeholder="Password"
               required
             />
             {errors.password && (
-              <div
-                className="alert error"
-                style={{ marginTop: "0.5rem", marginBottom: 0 }}
-              >
+              <div className="alert error" style={{ marginTop: '0.5rem', marginBottom: 0 }}>
                 {errors.password}
               </div>
             )}
           </div>
-
+          
           <div className="form-group">
-            <button type="submit" className="login-btn" disabled={loading}>
+            <button 
+              type="submit" 
+              className="login-btn"
+              disabled={loading}
+            >
               {loading && <span className="spinner"></span>}
-              {loading ? "Signing In..." : "Login"}
+              {loading ? 'Signing In...' : 'Confirm Identity'}
             </button>
+          </div>
+          
+          <div className="signup-message">
+            <p>Not registered? <a href="#signup" className="signup-link">Create an account</a></p>
           </div>
         </form>
       </div>
