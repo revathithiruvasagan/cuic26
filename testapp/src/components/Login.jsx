@@ -9,7 +9,7 @@ function Login({ setMail, setPassword, onSubmit }) {
   const handleLogin = (e) => {
     e.preventDefault();
     setMail(inputMail);
-    setMail(inputPassword);
+    setPassword(inputPassword);
     setLoggedIn(true);
     onSubmit();
   };
