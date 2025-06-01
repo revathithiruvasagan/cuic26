@@ -1,17 +1,14 @@
 import { useState } from 'react';
 import '../styles/Login.css';
 
-function Login({ setMail, setPassword, onSubmit }) {
-  const [inputMail, setInputMail] = useState('');
-  const [inputPassword, setInputPassword] = useState('');
+function Login({ setMail, setPassword, mail, password, onSubmit }) {
   const [loggedIn, setLoggedIn] = useState(false);
+  const [passwordd, setPasswordd] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
-    setMail(inputMail);
-    setMail(inputPassword);
     setLoggedIn(true);
-    onSubmit();
+    onSubmit(mail, password);
   };
 
   return (
@@ -24,8 +21,8 @@ function Login({ setMail, setPassword, onSubmit }) {
             <input
               className="form-control"
               type="email"
-              value={inputMail}
-              onChange={e => setInputMail(e.target.value)}
+              value={mail}
+              onChange={e => setMail(e.target.value)}
               required
             />
           </div>
@@ -34,15 +31,15 @@ function Login({ setMail, setPassword, onSubmit }) {
             <input
               className="form-control"
               type="password"
-              value={inputPassword}
-              onChange={e => setInputPassword(e.target.value)}
+              value={passwordd}
+              onChange={e => setPasswordd(e.target.value)}
               required
             />
           </div>
           <button className="login-btn" type="submit">Log In</button>
           {loggedIn && (
             <div className="alert" style={{ color: 'green', backgroundColor: '#e6ffe6', marginTop: '1rem' }}>
-              Some error occured, request data logged in console.
+              Request logged in console
             </div>
           )}
         </form>

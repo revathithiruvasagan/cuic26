@@ -5,7 +5,7 @@ function App() {
   const [mail, setMail] = useState(null);
   const [password, setPassword] = useState(null);
 
-  const apiCall = () => {
+  const apiCall = (mail,password) => {
     const requestData = {
       email: mail,
       password: password
@@ -15,7 +15,7 @@ function App() {
 
   return (
     <div className="App">
-      <Login setMail={setMail} setPassword={setPassword} onSubmit={apiCall} />
+      <Login setMail={setMail} setPassword={setPassword} mail={mail} password={password} onSubmit={apiCall} />
     </div>
   );
 }
