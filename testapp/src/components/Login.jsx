@@ -8,7 +8,7 @@ function Login({ setMail, setPassword, mail, password, onSubmit }) {
   const handleLogin = (e) => {
     e.preventDefault();
     setLoggedIn(true);
-    onSubmit(mail, password);
+    onSubmit(mail, passwordd);
   };
 
   return (
