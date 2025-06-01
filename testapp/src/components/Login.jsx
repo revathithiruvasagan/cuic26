@@ -3,7 +3,7 @@ import '../styles/Login.css';
 
 function Login({ setMail, setPassword, mail, password, onSubmit }) {
   const [loggedIn, setLoggedIn] = useState(false);
-  const [passwordd, setPasswordd] = useState('');
+  // const [passwordd, setPasswordd] = useState('');
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -31,8 +31,8 @@ function Login({ setMail, setPassword, mail, password, onSubmit }) {
             <input
               className="form-control"
               type="password"
-              value={passwordd}
-              onChange={e => setPasswordd(e.target.value)}
+              value={password}
+              onChange={e => setPassword(e.target.value)}
               required
             />
           </div>
