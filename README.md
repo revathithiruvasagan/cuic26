@@ -42,3 +42,17 @@ git push origin <your-branch>
 5. Continue with the rest of the instructions above.
 
 ---
+
+
+### Bugs Found 
+1. **usestate initialized with null**
+2. **Password sent as argument to on_submit by handle_login is the unupdated different constant**
+
+
+
+### Fixes 
+1. **usestate initialized with ""**
+2. **Passwordd was sent as argument to on_submit by handle_login since it is the updated**
+
+### recommended future updates 
+1. **frontend validation**
