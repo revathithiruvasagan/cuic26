@@ -2,8 +2,8 @@ import { useState } from 'react';
 import Login from './components/Login';
 
 function App() {
-  const [mail, setMail] = useState(null);
-  const [password, setPassword] = useState(null);
+  const [mail, setMail] = useState('');
+  const [password, setPassword] = useState('');
 
   const apiCall = (mail,password) => {
     const requestData = {
